@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+ <html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Apartment Fixer - Viktor Velikov</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <section>  
+            <h1>Create User:</h1>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="/register" method = "POST">
+                    {% csrf_token %}
+                    <div class ="form group">
+                        <label for="first_name">First name:</label>
+                        <input type="text" name="first_name" id="first_name">
+                    </div>
+                    <div class ="form group">
+                        <label for="last_name">Last name:</label>
+                        <input type="text" name="last_name" id="last_name">
+                    </div>
+                    <div class ="form group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+                    <div class ="form group">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <div class ="form group">
+                        <label for="confirm_password"> Confirm Password:</label>
+                        <input type="password" name="confirm_password" id="confirm_password">
+                    </div>
+                    <input type="submit" value="Create User">
+                </form>
+        </section>  
+        <section>
+        <h1>Login</h1>
+            <form action ="/login" method = "POST">
+                {% csrf_token %}
+            <div class ="form group">
+                <label for="login_email">Email:</label>
+                <input type="email" name="login_email" id="login_email">
+            </div>
+            <div class ="form group">
+                <label for="login_password">Password:</label>
+                <input type="password" name="login_password" id="login_password">
+            </div>
+            <input type="submit" value="Login">
+        </form>
+        </section>    
+    </body>
+</html>

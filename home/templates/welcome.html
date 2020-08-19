@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+ <html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Welcome</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>Welcome, {{ request.session.greeting }}</h1>
+        <h3><a href ="/dashboard"> Volunteer for an issue</a></h3>
+        <h3><a href ="/open"> Report an issue</a></h3>
+        <h4><a href="/logout" role="button" class="logout_button">Logout</a></h4> <br>
+        <h1>Issues opened by you:</h1>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>Issue ID</th>
+                    <th>Issue Title</th>
+                    <th>Submitted Date:</th>
+                    <th>Target Completion Date:</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for issue in user_issues %}
+                <tr>
+                    <td><a href ="/details/{{ issue.id }}">{{ issue.id }}</a></td>
+                    <td><a href ="/details/{{ issue.id }}">{{ issue.title }}</a></td>
+                    <td>{{ issue.created_at }}</td>
+                    <td>{{ issue.target_dt }}</td>
+                    <td><a href="complete/{{ issue.id }}">Mark as completed</a> | <a href="fail/{{ issue.id }}">Mark as Failed</a>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <h1>Issues you voulnteered for:</h1>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>Issue ID</th>
+                    <th>Issue Title</th>
+                    <th>Submitted Date:</th>
+                    <th>Target Completion Date:</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for issue in volunteered_issues %}
+                <tr>
+                    <td><a href ="/details/{{ issue.id }}">{{ issue.id }}</a></td>
+                    <td><a href ="/details/{{ issue.id }}">{{ issue.title }}</a></td>
+                    <td>{{ issue.created_at }}</td>
+                    <td>{{ issue.target_dt }}</td>
+                    <td><a href="complete/{{ issue.id }}">Mark as completed</a>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

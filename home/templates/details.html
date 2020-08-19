@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+ <html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Apartment Fix Issue Details</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        Welcome, {{request.session.greeting}} <br>
+        <a href="/welcome" role="button" class="logout_button">Your Profile</a> <br>
+        <a href="/logout" role="button" class="button">Logout</a> <br>
+        <a href="/dashboard" role="button" class="button">Your Issues</a>
+        <h1>Issue Details:</h1>
+        <h3>Issue ID: {{ issue.id }}</h3>
+        <h3>Issue Title: {{ issue.title }}</h3>
+        <h3>Issue Description: {{ issue.description }}</h3>
+        <h3>Submitted Date:{{ issue.created_at }}</h3>
+        <h3>Target Completion Date: {{ issue.target_dt }} </h3>
+        <h3>Author {{ issue.created_by.first_name }} {{ issue.created_by.last_name }}</h3>
+        <h3><a href = "/signup/{{ issue.id }}"role = "button" class="button">Sign me up!</a></h3>
+    </body>
+    </html>

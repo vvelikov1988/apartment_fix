@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+ <html class="no-js"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ApartmentFix Issue Dashboard</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        Welcome, {{request.session.greeting}} <br>
+        <a href="/welcome" role="button" class="logout_button">Your Profile</a> <br>
+        <a href="/logout" role="button" class="logout_button">Logout</a> <br>
+        <a href="/open" role="button" class="create_button">Create a New Issue</a>
+        <h1>All Issues:</h1>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>Issue ID</th>
+                    <th>Issue Title</th>
+                    <th>Submitted Date</th>
+                    <th>Target Completion Date</th>
+                    <th>Author</th>
+                    <th>Volunteer:</th>
+                    <th>View Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issue in all_issues %}
+                <tr>
+                    <td><a href ="/details/{{ issue.id }}">{{ issue.id }}</a></td>
+                    <td><a href ="/details/{{ issue.id }}">{{ issue.title }}</a></td>
+                    <td>{{ issue.created_at }}</td>
+                    <td>{{ issue.target_dt }}</td>
+                    <td>{{ issue.created_by.first_name }} {{ issue.created_by.last_name }}</td>
+                    <td>{{ issue.volunteers.first_name }} </td>
+                    <td><a href="details/{{ issue.id }}">View Details:</a>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
